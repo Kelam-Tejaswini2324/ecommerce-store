@@ -1,18 +1,16 @@
 import { useState } from "react";
 import API from "../services/api";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 function Register() {
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const registerUser = async (e) => {
     e.preventDefault();
-console.log({
-  name,
-  email,
-  password,
-});
+
     try {
       await API.post("/auth/register", {
         name,
@@ -21,47 +19,78 @@ console.log({
       });
 
       alert("Registration Successful");
+      window.location.href = "/login";
     } catch (error) {
-  console.log(error);
-  console.log(error.response);
+      console.log(error);
 
-  alert(
-    error.response?.data?.message ||
-    "Registration Failed"
-  );
-}
+      alert(
+        error.response?.data?.message ||
+        "Registration Failed"
+      );
+    }
   };
 
   return (
-    <form onSubmit={registerUser}>
-      <h2>Register</h2>
+    <div className="auth-container">
+      <div className="auth-card">
 
-      <input
-        placeholder="Name"
-        onChange={(e)=>setName(e.target.value)}
-      />
+        <img
+          src={logo}
+          alt="Teju Store"
+          className="auth-logo"
+        />
 
-      <br /><br />
+        <p className="brand-tagline">
+          SHOP MORE • SAVE MORE
+        </p>
 
-      <input
-        placeholder="Email"
-        onChange={(e)=>setEmail(e.target.value)}
-      />
+        <h1>Create Account 🚀</h1>
 
-      <br /><br />
+        <p>
+          Join Teju Store and start shopping today
+        </p>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e)=>setPassword(e.target.value)}
-      />
+        <form onSubmit={registerUser}>
 
-      <br /><br />
+          <input
+            type="text"
+            placeholder="Enter Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-      <button type="submit">
-        Register
-      </button>
-    </form>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button type="submit">
+            Create Account
+          </button>
+
+        </form>
+
+        <p className="auth-link">
+          Already have an account?{" "}
+          <Link to="/login">
+            Login
+          </Link>
+        </p>
+
+      </div>
+    </div>
   );
 }
 

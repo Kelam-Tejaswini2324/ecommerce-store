@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../services/api";
-
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,30 +24,48 @@ function Login() {
   };
 
   return (
-    <form onSubmit={loginUser}>
-      <h2>Login</h2>
+  <div className="auth-container">
+    <div className="auth-card">
+  <img
+    src={logo}
+    alt="Teju Store"
+    className="auth-logo"
+  />
+  <p className="brand-tagline">
+  Shop More • Save More
+</p>
 
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+  <h1>Welcome Back 👋</h1>
 
-      <br /><br />
+  <p>Login to continue shopping at Teju Store</p>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+  <input
+    type="email"
+    placeholder="Enter Email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+  />
 
-      <br /><br />
+  <input
+    type="password"
+    placeholder="Enter Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+  />
 
-      <button type="submit">
-        Login
-      </button>
-    </form>
-  );
+  <button onClick={handleLogin}>
+    Login
+  </button>
+
+  <p className="auth-link">
+    Don't have an account?
+    <Link to="/register"> Register</Link>
+  </p>
+</div>
+
+      
+  </div>
+);
 }
 
 export default Login;
