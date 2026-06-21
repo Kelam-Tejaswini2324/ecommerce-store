@@ -4,7 +4,14 @@ import logo from "../assets/logo.png";
 function Navbar() {
   const logout = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
+
+const logout = () => {
+  localStorage.clear();
+  navigate("/login");
+};
   };
 
   return (
