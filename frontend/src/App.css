@@ -299,9 +299,10 @@ body{
 }
 
 .auth-card h1{
-  background: linear-gradient(90deg,#8b5cf6,#2563eb);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  background: linear-gradient(90deg, #8b5cf6, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .auth-card p{
