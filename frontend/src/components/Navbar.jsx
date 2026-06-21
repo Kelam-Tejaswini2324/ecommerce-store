@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Left Menu */}
+      {/* Left Links */}
       <div className="nav-left">
         <Link to="/">Home</Link>
         <a href="#">Shop</a>
